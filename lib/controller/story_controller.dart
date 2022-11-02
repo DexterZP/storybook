@@ -1,19 +1,22 @@
 import 'package:get/get.dart';
-import 'package:storybook/views/components/buttons/pzl_button_widget.dart';
-import 'package:storybook_flutter/storybook_flutter.dart';
+
+import 'package:storybook/package/lib/flutterbook.dart';
+import 'package:storybook/views/components/components.dart';
 
 class StoryController extends GetxController {
-  var stories = RxList<Story>();
+  var components = RxList<Category>();
 
   @override
   void onInit() {
     super.onInit();
 
     //Components
-    stories.add(Story(
-        name: "Components/Buttons/Text",
-        description: "PZLButton",
-        builder: (_) => const PZLButtonWidget()));
+    components.add(
+      Category(
+        categoryName: "Components",
+        organizers: ComponentsWidget.folders,
+      ),
+    );
     //Compositions
   }
 }

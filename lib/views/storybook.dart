@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:storybook/controller/story_controller.dart';
-import 'package:storybook_flutter/storybook_flutter.dart';
+
+import 'package:storybook/package/lib/flutterbook.dart';
 
 class StoryBook extends StatelessWidget {
   StoryBook({Key? key}) : super(key: key);
@@ -9,17 +10,31 @@ class StoryBook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Storybook(
-      stories: controller.stories,
-      plugins: initializePlugins(
-        contentsSidePanel: true,
-        knobsSidePanel: false,
-        enableThemeMode: false,
-        // initialDeviceFrameData: DeviceFrameData(
-        //   device: Devices.ios.iPhone13,
-        // ),
-        enableKnobs: false,
-      ),
+    return FlutterBook(
+      theme: ThemeData.dark(),
+      darkTheme: ThemeData.dark(),
+      categories: [
+        controller.components.first,
+        Category(
+          categoryName: "Compositions",
+          organizers: [
+            Folder(
+              folderName: 'Dropdown',
+              organizers: [
+                Component(
+                  componentName: 'Dropdown widget',
+                  states: [
+                    ComponentState.child(
+                      stateName: 'Default Container',
+                      child: Container(),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
