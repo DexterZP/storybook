@@ -137,7 +137,7 @@ class _DocWeb extends StatelessWidget {
     return LayoutBuilder(
       builder: (_, constrains) => SizedBox(
         height: constrains.maxHeight,
-        child: component != null
+        child: component?.docWeb != null
             ? WebViewX(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
