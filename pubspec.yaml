@@ -38,11 +38,11 @@ dependencies:
   cupertino_icons: any
   get: 4.6.5
   flutter_feather_icons: ^2.0.0+1
-  google_fonts: ^2.1.0
-  provider: "^6.0.1"
+  google_fonts: ^3.0.1
+  provider: ^6.0.5
   recase: ^4.0.0
   device_preview: ^1.1.0
-  widget_with_codeview: ^2.0.1+2
+  widget_with_codeview: ^3.0.1
   webviewx_plus: ^0.3.2
 
 dev_dependencies:

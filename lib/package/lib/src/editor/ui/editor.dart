@@ -115,7 +115,7 @@ class _Doc extends StatelessWidget {
       builder: (_, constrains) => SizedBox(
         height: constrains.maxHeight,
         child: component != null && component!.codeSample != null
-            ? SourceCodeView(
+            ? WidgetWithCodeView(
                 filePath: component!.codeSample!,
                 labelBackgroundColor: Colors.white,
               )
