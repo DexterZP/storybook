@@ -16,12 +16,12 @@ class CoreContentTabs extends StatefulWidget {
 class CoreContentTabsState extends State<CoreContentTabs> {
   @override
   Widget build(BuildContext context) {
-    final TextStyle selectedTabStyle = context.textTheme.subtitle1!.copyWith(
+    final TextStyle selectedTabStyle = context.textTheme.titleMedium!.copyWith(
       fontWeight: FontWeight.bold,
-      color: context.colorScheme.primary,
+      color: Colors.orange,
     );
 
-    final TextStyle tabStyle = context.textTheme.subtitle1!.copyWith(
+    final TextStyle tabStyle = context.textTheme.titleMedium!.copyWith(
       fontWeight: FontWeight.bold,
       color: context.theme.hintColor,
     );
@@ -39,7 +39,7 @@ class CoreContentTabsState extends State<CoreContentTabs> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                    color: context.colorScheme.primary,
+                    color: Colors.orange,
                     style: context.watch<TabProvider>().tab ==
                             FlutterBookTab.canvas
                         ? BorderStyle.solid
@@ -68,7 +68,7 @@ class CoreContentTabsState extends State<CoreContentTabs> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                    color: context.colorScheme.primary,
+                    color: Colors.orange,
                     style:
                         context.watch<TabProvider>().tab == FlutterBookTab.cod
                             ? BorderStyle.solid
@@ -97,7 +97,7 @@ class CoreContentTabsState extends State<CoreContentTabs> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                    color: context.colorScheme.primary,
+                    color: Colors.orange,
                     style:
                         context.watch<TabProvider>().tab == FlutterBookTab.doc
                             ? BorderStyle.solid

@@ -44,6 +44,7 @@ dependencies:
   device_preview: ^1.1.0
   widget_with_codeview: ^3.0.1
   webviewx_plus: ^0.3.2
+  webview_cef: ^0.0.8
 
 dev_dependencies:
   flutter_test:

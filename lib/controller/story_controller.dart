@@ -1,22 +1,31 @@
 import 'package:get/get.dart';
+import 'package:storybook/controller/folder_controller.dart';
 
 import 'package:storybook/package/lib/flutterbook.dart';
-import 'package:storybook/views/components/components.dart';
 
 class StoryController extends GetxController {
-  var components = RxList<Category>();
+  List<Category> components = RxList<Category>();
 
   @override
   void onInit() {
     super.onInit();
 
+    FolderController controller = Get.put(FolderController());
+
     //Components
     components.add(
       Category(
         categoryName: "Components",
-        organizers: ComponentsWidget.folders,
+        organizers: controller.folderComponent,
       ),
     );
+
     //Compositions
+    components.add(
+      Category(
+        categoryName: "Compositions",
+        organizers: controller.folderComposition,
+      ),
+    );
   }
 }

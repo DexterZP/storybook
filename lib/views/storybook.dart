@@ -13,28 +13,7 @@ class StoryBook extends StatelessWidget {
     return FlutterBook(
       theme: ThemeData.dark(),
       darkTheme: ThemeData.dark(),
-      categories: [
-        controller.components.first,
-        Category(
-          categoryName: "Compositions",
-          organizers: [
-            Folder(
-              folderName: 'Dropdown',
-              organizers: [
-                Component(
-                  componentName: 'Dropdown widget',
-                  states: [
-                    ComponentState.child(
-                      stateName: 'Default Container',
-                      child: Container(),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
+      categories: controller.components,
     );
   }
 }

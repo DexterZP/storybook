@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -7,6 +6,8 @@ import '../../utils/utils.dart';
 import '../models/organizers.dart';
 
 //ignore_for_file: must_call_super
+
+const Color generalColor = Colors.orange;
 
 class ComponentStateTile extends StatefulWidget {
   const ComponentStateTile({
@@ -36,29 +37,46 @@ class ComponentStateTileState extends State<ComponentStateTile>
         ? context.colorScheme.onPrimary
         : context.colorScheme.onSurface;
 
-    return Highlighter(
-      onEnter: (_) => setState(() => hover = true),
-      onExit: (_) => setState(() => hover = false),
-      overrideHover: widget.isSelected,
-      onPressed: () => widget.onSelected(widget.item),
-      child: Container(
-        padding: EdgeInsets.fromLTRB(widget.padding, 4, 0, 4),
-        child: Row(
-          children: [
-            const SizedBox(width: 32),
-            Icon(
-              FeatherIcons.bookmark,
-              size: 14,
-              color: widget.isSelected || hover
-                  ? context.colorScheme.onPrimary
-                  : context.colorScheme.secondary,
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 6,
+        left: 40,
+        right: 12,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Highlighter(
+          onEnter: (_) => setState(() => hover = true),
+          onExit: (_) => setState(() => hover = false),
+          overrideHover: widget.isSelected,
+          onPressed: () => widget.onSelected(widget.item),
+          color: generalColor,
+          child: Container(
+            padding: EdgeInsets.fromLTRB(widget.padding, 4, 0, 4),
+            decoration: BoxDecoration(
+              color: hover || widget.isSelected
+                  ? generalColor
+                  : const Color(0xff26292E),
+              borderRadius: BorderRadius.circular(8),
             ),
-            const SizedBox(width: 8),
-            Text(
-              widget.item.stateName,
-              style: context.textTheme.bodyText1!.copyWith(color: hoverColor),
+            child: Row(
+              children: [
+                Icon(
+                  FeatherIcons.bookmark,
+                  size: 14,
+                  color: widget.isSelected || hover
+                      ? context.colorScheme.onPrimary
+                      : context.colorScheme.secondary,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  widget.item.stateName,
+                  style:
+                      context.textTheme.bodyLarge!.copyWith(color: hoverColor),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -97,35 +115,51 @@ class ComponentTileState extends State<ComponentTile>
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Highlighter(
-          onEnter: (_) => setState(() => hover = true),
-          onExit: (_) => setState(() => hover = false),
-          onPressed: () => setState(() => expanded = !expanded),
-          cursor:
-              (widget.states.isNotEmpty) ? null : SystemMouseCursors.forbidden,
-          child: Container(
-            padding: EdgeInsets.fromLTRB(widget.padding, 4, 0, 4),
-            child: Row(
-              children: [
-                if (widget.states.isNotEmpty)
-                  Icon(FeatherIcons.chevronDown, size: 12, color: hoverColor)
-                else
-                  const SizedBox(width: 12),
-                const SizedBox(width: 4),
-                Icon(
-                  FeatherIcons.book,
-                  size: 14,
-                  color: hover
-                      ? context.colorScheme.onPrimary
-                      : context.colorScheme.secondaryContainer,
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 6,
+            left: 12,
+            right: 12,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Highlighter(
+              onEnter: (_) => setState(() => hover = true),
+              onExit: (_) => setState(() => hover = false),
+              onPressed: () => setState(() => expanded = !expanded),
+              cursor: (widget.states.isNotEmpty)
+                  ? null
+                  : SystemMouseCursors.forbidden,
+              color: generalColor,
+              child: Container(
+                padding: EdgeInsets.fromLTRB(widget.padding, 4, 0, 4),
+                decoration: BoxDecoration(
+                  color: hover ? generalColor : const Color(0xff26292E),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                const SizedBox(width: 8),
-                Text(
-                  widget.item.name,
-                  style:
-                      context.textTheme.bodyText1!.copyWith(color: hoverColor),
+                child: Row(
+                  children: [
+                    if (widget.states.isNotEmpty)
+                      Icon(FeatherIcons.chevronDown,
+                          size: 12, color: hoverColor)
+                    else
+                      const SizedBox(width: 12),
+                    const SizedBox(width: 4),
+                    Icon(
+                      FeatherIcons.book,
+                      size: 14,
+                      color:
+                          hover ? context.colorScheme.onPrimary : Colors.blue,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      widget.item.name,
+                      style: context.textTheme.bodyLarge!
+                          .copyWith(color: hoverColor),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
@@ -170,36 +204,47 @@ class FolderTileState extends State<FolderTile>
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Highlighter(
-          onEnter: (_) => setState(() => hover = true),
-          onExit: (_) => setState(() => hover = false),
-          onPressed: () => setState(() => expanded = !expanded),
-          cursor: (widget.organizers.isNotEmpty)
-              ? null
-              : SystemMouseCursors.forbidden,
-          child: Container(
-            padding: EdgeInsets.fromLTRB(widget.padding, 4, 0, 4),
-            child: Row(
-              children: [
-                if (widget.organizers.isNotEmpty)
-                  Icon(FeatherIcons.chevronDown, size: 12, color: hoverColor)
-                else
-                  const SizedBox(width: 12),
-                const SizedBox(width: 4),
-                Icon(
-                  FeatherIcons.archive,
-                  size: 14,
-                  color: hover
-                      ? context.colorScheme.onPrimary
-                      : context.colorScheme.primaryContainer,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Highlighter(
+              onEnter: (_) => setState(() => hover = true),
+              onExit: (_) => setState(() => hover = false),
+              onPressed: () => setState(() => expanded = !expanded),
+              color: generalColor,
+              cursor: (widget.organizers.isNotEmpty)
+                  ? null
+                  : SystemMouseCursors.forbidden,
+              child: Container(
+                padding: EdgeInsets.fromLTRB(widget.padding, 4, 0, 4),
+                decoration: BoxDecoration(
+                  color: hover ? generalColor : const Color(0xff26292E),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                const SizedBox(width: 8),
-                Text(
-                  widget.item.name,
-                  style:
-                      context.textTheme.bodyText1!.copyWith(color: hoverColor),
+                child: Row(
+                  children: [
+                    if (widget.organizers.isNotEmpty)
+                      Icon(FeatherIcons.chevronDown,
+                          size: 12, color: hoverColor)
+                    else
+                      const SizedBox(width: 12),
+                    const SizedBox(width: 4),
+                    Icon(
+                      FeatherIcons.archive,
+                      size: 14,
+                      color:
+                          hover ? context.colorScheme.onPrimary : generalColor,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      widget.item.name,
+                      style: context.textTheme.bodyLarge!
+                          .copyWith(color: hoverColor),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),

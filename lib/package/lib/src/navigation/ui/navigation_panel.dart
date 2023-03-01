@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 import '../../styled_widgets/smooth_scroll.dart';
@@ -52,7 +53,7 @@ class NavigationPanelState extends State<NavigationPanel> {
               const EdgeInsets.only(top: 12.0, bottom: 4, left: 20, right: 20),
           child: Text(
             item.name,
-            style: context.textTheme.subtitle2!.copyWith(
+            style: context.textTheme.titleSmall!.copyWith(
               fontWeight: FontWeight.w600,
               letterSpacing: 2,
             ),
@@ -116,11 +117,12 @@ class NavigationPanelState extends State<NavigationPanel> {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints(minWidth: 50, maxWidth: 250),
+      color: const Color(0xff1B1C1E),
       child: Column(
         children: [
           widget.header ?? const _NavigationHeader(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: CupertinoSearchTextField(
               itemSize: 16,
               controller: search,
@@ -201,19 +203,18 @@ class _NavigationHeader extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(FeatherIcons.bookOpen, color: Color(0xFFD689EF)),
-                const SizedBox(width: 8),
                 Text(
-                  'Flutterbook',
-                  style: context.textTheme.headline5!
+                  'StoryBook',
+                  style: context.textTheme.headlineSmall!
                       .copyWith(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(width: 20),
+                const Icon(
+                  FeatherIcons.bookOpen,
+                  color: Colors.orange,
                 ),
               ],
             ),
-          ),
-          Text(
-            'by MOONSDONTBURN',
-            style: context.textTheme.caption,
           ),
         ],
       ),
